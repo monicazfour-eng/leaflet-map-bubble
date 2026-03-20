@@ -1,0 +1,5 @@
+[
+  { "name": "Incident A", "lat": 38.627, "lng": -90.199 },
+  { "name": "Incident B", "lat": 38.64, "lng": -90.21 },
+  { "name": "Incident C", "lat": 38.62, "lng": -90.18 }
+]
