@@ -2,11 +2,21 @@
 <html>
 <head>
   <meta charset="utf-8" />
-  <title>Leaflet Map Example</title>
+  <title>Leaflet Map Mobile</title>
   <!-- Leaflet CSS from CDN -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   <style>
-    #map { height: 100vh; }
+    /* Reset margins and make body fill screen */
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    /* Map fills entire viewport */
+    #map {
+      height: 100%;
+      width: 100%;
+    }
   </style>
 </head>
 <body>
