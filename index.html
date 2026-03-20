@@ -39,6 +39,32 @@
       data.forEach(item => {
         L.marker([item.lat, item.lng]).addTo(map)
           .bindPopup(item.name);
+        map.on('click', function(e) {
+  var lat = e.latlng.lat;
+  var lng = e.latlng.lng;
+
+  // Aquí llamamos al endpoint de Bubble para crear el incidente
+  fetch('https://tu-app.bubbleapps.io/version-test/api/1.1/obj/Incident', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+      // Si tu app requiere autenticación, aquí va el token
+    },
+    body: JSON.stringify({
+      lat: lat,
+      lng: lng,
+      tipo: "robo",        // ejemplo, luego lo puedes hacer dinámico
+      codigo: Math.random().toString(36).substring(2,8) // genera un código simple
+    })
+  })
+  .then(response => response.json())
+  .then(data => {
+    console.log("Incidente guardado:", data);
+    L.marker([lat, lng]).addTo(map)
+      .bindPopup("Incidente registrado (Código: " + data.response.codigo + ")");
+  });
+});
+
       });
     });
 </script>
