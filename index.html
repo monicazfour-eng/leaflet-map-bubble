@@ -24,9 +24,25 @@
 
   <!-- Leaflet JS from CDN -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-  <script>
-    // Initialize map centered on St. Louis
-    var map = L.map('map').setView([38.627, -90.199], 13);
+ <script>
+  var map = L.map('map').setView([38.627, -90.199], 13);
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxZoom: 19,
+    attribution: '© OpenStreetMap'
+  }).addTo(map);
+
+  // Load markers from JSON file
+  fetch('data.json')
+    .then(response => response.json())
+    .then(data => {
+      data.forEach(item => {
+        L.marker([item.lat, item.lng]).addTo(map)
+          .bindPopup(item.name);
+      });
+    });
+</script>
+
 
     // Add OpenStreetMap tiles
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
